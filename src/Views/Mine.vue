@@ -17,9 +17,11 @@
             </section>
         </mu-paper>
         <mu-menu width="7rem">
-            <div class="mineItemTitle">
+            <div class="mineItemTitle">我的订单
                 <i class="icon-order"></i>
-                <mu-menu-item title="我的订单" rightIcon="chevron_right" afterText="查看更多订单" to="/MyOrder"/>
+                <p class="linkItem">
+                    <mu-menu-item rightIcon="chevron_right" afterText="查看更多订单" to="/MyOrder"/>
+                </p>
             </div>
             <div class="orderInfoBox clearfix">
                 <div class="orderState" id="waitForPay">
@@ -33,27 +35,31 @@
                 </div>
             </div>
 
-            <div class="mineItemTitle clearfix">
+            <div class="mineItemTitle clearfix">我的佣金
+
                 <i class="icon-fee material-icons"></i>
-                <mu-menu-item title="我的佣金" rightIcon="chevron_right" to="/MyFee"/>
-                <i class="icon-go"></i>
+                <p class="linkItem">
+                    <mu-menu-item title="" rightIcon="chevron_right" to="/MyFee"/>
+                </p>
             </div>
-            <div class="mineItemTitle clearfix">
+            <div class="mineItemTitle clearfix">我的会员
                 <i class="icon-menber"></i>
-                <mu-menu-item title="我的会员" rightIcon="chevron_right" to="/MyMember"/>
-                <i class="icon-go"></i>
+                <p class="linkItem">
+                    <mu-menu-item title="" rightIcon="chevron_right" to="/MyMember"/>
+                </p>
             </div>
-            <div class="mineItemTitle clearfix">
+            <div class="mineItemTitle clearfix">收货地址
                 <i class="icon-address"></i>
-                <mu-menu-item title="收货地址" rightIcon="chevron_right" to="/MyAddress"/>
-                <i class="icon-go"></i>
+                <p class="linkItem">
+                    <mu-menu-item title="" rightIcon="chevron_right" to="/MyAddress"/>
+                </p>
             </div>
         </mu-menu>
     </div>
 </template>
 
 <script type="text/ecmascript-6">
-    import BottomNavigation from '../components/BottomNavigation.vue'
+    import BottomNavigation from '../components/common/BottomNavigation.vue'
     import CheckBox from '../components/CheckBox.vue'
     export default{
         name: 'Mine',
@@ -67,14 +73,14 @@
                     userAvatar: 'https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3625142282,583054845&fm=26&gp=0.jpg',
                     userName: 'Hello',
                     QRImgUrl: 'http://qr.api.cli.im/qr?data=http%253A%252F%252F192.168.1.104%253A9888%252F%2523&level=H&transparent=false&bgcolor=%23ffffff&forecolor=%23000000&blockpixel=12&marginblock=1&logourl=&size=280&kid=cliim&key=8a250acbdabbec8b38f987692084c219',
-                    agencyURL:'http://baidu.com'
+                    agencyURL: 'http://baidu.com'
                 },
                 oderInfo: {
-                    waitForPay:2,
-                    waitForDeliver:4,
-                    waitForHarvest:2
+                    waitForPay: 2,
+                    waitForDeliver: 4,
+                    waitForHarvest: 2
                 },
-                menber:'',
+                menber: '',
                 fee: "523",
                 address: [],
                 showQR: 0
@@ -115,6 +121,7 @@
         width: 7.5rem;
         height: 12.06rem;
         .mineItemTitle {
+            position: relative;
             width: 7.5rem;
             height: 1rem;
             line-height: 1rem;
@@ -127,7 +134,8 @@
                 display: inline-block;
                 width: .36rem;
                 height: .36rem;
-                margin: .28rem 0 .28rem .28rem;
+                /*margin: .28rem 0 .28rem .28rem;*/
+                margin: .28rem;
             }
             .icon-order {
                 background: url("../assets/img/icons/mine_icon_Oder@2x.png") center no-repeat;
@@ -148,6 +156,13 @@
             .icon-go {
                 background: url("../assets/img/icons/mine_icon_address@2x.png") center no-repeat;
                 background-size: .36rem .36rem;
+            }
+            .linkItem {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 7.5rem;
+                background-color: transparent;
             }
         }
     }
@@ -274,7 +289,7 @@
                 color: #2a293b;
             }
             .QRImg {
-                margin: 0  1.05rem;
+                margin: 0 1.05rem;
                 width: 3.5rem;
                 height: 3.5rem;
                 /*border: .01rem solid sandybrown;*/

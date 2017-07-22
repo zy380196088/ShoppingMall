@@ -10,7 +10,7 @@
 </template>
 
 <script>
-    import BottomNavigation from './components/BottomNavigation.vue'
+    import BottomNavigation from './components/common/BottomNavigation.vue'
     export default {
         name: 'app',
         components: {
@@ -96,7 +96,10 @@
     a, button, input {
         -webkit-tap-highlight-color: rgba(255, 0, 0, 0);
     }
-    *:focus {outline: none;}
+
+    *:focus {
+        outline: none;
+    }
 
     .clearfix {
         clear: both;
@@ -114,10 +117,15 @@
         zoom: 1;
     }
 
-    .BottomNav{
+    .BottomNav {
         position: fixed;
         bottom: 0;
         width: 7.5rem;
         height: 1.12rem;
+        min-height: 1.12rem;
+    }
+
+    [v-cloak] {
+        display: none;
     }
 </style>

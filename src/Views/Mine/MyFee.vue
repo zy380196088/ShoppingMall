@@ -141,7 +141,7 @@
                     line-height: .96rem;
                 }
             }
-            .feeBanner{
+            .feeBanner {
                 position: relative;
             }
             .withdrawCash-Value {
@@ -179,6 +179,16 @@
         width: 7.5rem;
         height: 1.3rem;
         border-bottom: .01rem solid #c1bdbc;
+        .text {
+            float: left;
+        }
+
+        .value {
+            float: right;
+            font-size: .3rem;
+            font-weight: bold;
+            color: #00b548;
+        }
     }
 
     .feeShowBox {
@@ -189,17 +199,9 @@
 
     }
 
-    .text{
-        float: left;
-    }
 
-    .value {
-        float: right;
-        font-size: .3rem;
-        font-weight: bold;
-        color: #00b548;
-    }
-    .value:after{
+
+    .value:after {
         content: '元';
     }
 
@@ -208,7 +210,8 @@
         font-size: .28rem;
         color: #c1bdbc;
     }
-    .state{
+
+    .state {
         float: right;
         font-size: .28rem;
     }

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Main from '../Views/Main.vue'
+import ProductDetails from '../Views/Main/ProductDetails.vue'
 import ShoppingCart from '../Views/ShoppingCart.vue'
 import PayPage from '../Views/ShoppingCart/PayPage.vue'
 import Mine from '../Views/Mine.vue'
@@ -9,6 +10,7 @@ import MyFee from '../Views/Mine/MyFee.vue'
 import MyMember from '../Views/Mine/MyMember.vue'
 import MyAddress from '../Views/Mine/MyAddress.vue'
 import EditAddress from '../Views/Mine/EditAddress.vue'
+
 
 Vue.use(Router)
 
@@ -47,6 +49,15 @@ export default new Router({
       path: '/EditAddress',
       name: 'EditAddress',
       component: EditAddress
+    },{
+      path: '/PayPage',
+      name: 'PayPage',
+      component: PayPage
+    },{
+      path: '/ProductDetails/:productId',
+      name: 'ProductDetails',
+      component: ProductDetails
     }
+
   ]
 })

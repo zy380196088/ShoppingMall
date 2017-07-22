@@ -1,15 +1,13 @@
 <template>
-    <div class="cartView">
-        <div id="topSelect" class="clearfix">
-            <mu-checkbox label="全选" class="selecctRadio" uncheckIcon="radio_button_unchecked"
-                         checkedIcon="radio_button_checked"/>
-        </div>
+    <div class="cartView" v-cloak>
+        <TopCheckbox :labelText="cartData.labelText"></TopCheckbox>
 
         <section class="cartList">
-            <div class="productItem clearfix " v-for="(item,index) in productList">
+            <div class="productItem clearfix " v-for="(item,index) in cartData.productList">
 
                 <div class="productSelectBox">
-                    <mu-checkbox label="" class="productSelect" uncheckIcon="radio_button_unchecked"
+                    <mu-checkbox label="" nativeValue="item.id" class="productSelect"
+                                 uncheckIcon="radio_button_unchecked"
                                  checkedIcon="radio_button_checked" v-model="item.select"/>
                 </div>
                 <img class="productImg" :src="item.imgUrl" alt="">
@@ -22,15 +20,15 @@
                         <mu-float-button icon="remove" mini class="sub-btn" v-on:click="sub(index)"/>
                         <mu-float-button icon="add" mini class="add-btn" v-on:click="add(index)"/>
                     </div>
-                    <p class="productPrice">{{item.unitPrice * item.quantity}}</p>
+                    <p class="productPrice">{{item.unitPrice * item.quantity | money}}</p>
                 </div>
             </div>
         </section>
 
         <div id="totalPrice">
             <span class="totalPriceTag">金额总计 :</span>
-            <span class="totalPriceValue">&#165 </span>
-            <router-link to="payPage"></router-link><span class="payBtn">结算</span>
+            <span class="totalPriceValue"> {{cartData.totalPrice | money}} </span>
+            <router-link to="/payPage"><span class="payBtn">结算</span></router-link>
         </div>
         <!--<mu-table class="cartView" multiSelectable enableSelectAll fixedHeader fixedFooter selectable showCheckbox-->
         <!--ref="table">-->
@@ -57,73 +55,19 @@
     </div>
 </template>
 <script>
+    import TopCheckbox from '../components/TopCheckbox.vue'
+
     export default {
         name: 'CartList',
+        props: ['cartData'],
         components: {
+            TopCheckbox
         },
         create(){
             this.getData()
         },
         data(){
-            return {
-                productList: [
-                    {
-                        id: '16342',
-                        title: '维达抽纸24包家庭装面巾纸卫生纸抽整箱超韧餐巾纸巾',
-                        imgUrl: 'https://gd1.alicdn.com/imgextra/i4/1587415772/TB2xkOttbFlpuFjy0FgXXbRBVXa_!!1587415772.jpg',
-                        unitPrice: 57.8,
-                        quantity: 2,
-                        select: false
-                    }, {
-                        id: '12342',
-                        title: 'Joyoung/九阳 DJ13E-Q3 家用全自动破壁无渣豆浆机',
-                        imgUrl: 'https://img.alicdn.com/imgextra/i2/415670368/TB2qrayprVkpuFjSspcXXbSMVXa_!!415670368.jpg_430x430q90.jpg',
-                        unitPrice: 297,
-                        quantity: 1,
-                        select: false
-                    },
-                    {
-                        id: '12542',
-                        title: '亿健精灵ELF跑步机家用 款多功能电动超静音可折叠健身房减肥正品',
-                        imgUrl: 'https://img.alicdn.com/bao/uploaded/i2/TB12fhMRFXXXXXVXFXXXXXXXXXX_!!0-item_pic.jpg_130x130.jpg',
-                        unitPrice: 1457,
-                        quantity: 1,
-                        select: true
-                    },
-                    {
-                        id: '125346342',
-                        title: 'Midea/美的 T7-L382B智能电烤箱家用烘焙多功能38升大容量蛋糕',
-                        imgUrl: 'https://img.alicdn.com/bao/uploaded/i1/TB1OYTzRXXXXXa1apXXSutbFXXX.jpg_640x480Q60s0.jpg_.webp',
-                        unitPrice: 469,
-                        quantity: 1,
-                        select: true
-                    }, {
-                        id: '15329',
-                        title: 'INNESS英尼斯全实木餐桌椅休闲桌椅组合简约早餐桌隔断吧台',
-                        imgUrl: 'https://img.alicdn.com/bao/uploaded/i2/TB1kETIRpXXXXcbapXXXXXXXXXX_!!2-item_pic.png_430x430q90.jpg',
-                        unitPrice: 758,
-                        quantity: 1,
-                        select: false
-                    },
-                    {
-                        id: '12542',
-                        link: 'https://detail.tmall.com/item.htm?id=549352025566&ali_refid=a3_430406_1007:13579762:T:3724950661867899228_0_100:937c5a836c8a664274baa0892753a456&ali_trackid=31_937c5a836c8a664274baa0892753a456&spm=a21bo.50862.201874-sales.7.ZfyQK6',
-                        title: 'Harbor House Glory 美式全棉贡缎四件套 印花床上用品',
-                        imgUrl: 'https://img.alicdn.com/bao/uploaded/i1/TB10kJ_RFXXXXaYXpXXXXXXXXXX_!!0-item_pic.jpg_430x430q90.jpg',
-                        unitPrice: 588.00,
-                        quantity: 1,
-                        select: false
-                    }, {
-                        id: '16342',
-                        link: 'https://item.taobao.com/item.htm?ft=t&spm=2013.1.20141001.1.rADeZ7&id=528028436514&scm=1007.12144.81309.42296_0&pvid=bb1cfc71-ee6b-4f04-bf1f-c760c1988867',
-                        title: '美国原装进口rumbatime手表女正品腕表女石英表',
-                        imgUrl: 'https://gd1.alicdn.com/imgextra/i1/74171808/TB29y5NbipnpuFjSZFkXXc4ZpXa_!!74171808.jpg',
-                        unitPrice: 288.00,
-                        quantity: 1,
-                        select: false
-                    }
-                ]
-            }
+            return {}
         },
         methods: {
             getData(){
@@ -140,22 +84,23 @@
                 //删除某商品
                 var _self = this;
                 if (confirm("你确定移除该商品？")) {
-                    _self.productList.splice(index, 1)
+                    _self.cartData.productList.splice(index, 1)
                 }
             },
             empty() {
                 //清空购物车
                 var _self = this;
-                _self.productList.splice(0, _self.productList.length);
+                _self.cartData.productList.splice(0, _self.cartData.productList.length);
             },
             sub(index){
                 console.log(index)
                 let _self = this;
-                if (_self.productList[index].quantity <= 1) {
+                console.log(this.cartData.productList)
+                if (_self.cartData.productList[index].quantity <= 1) {
                     _self.delete(index);
                     console.log("删除该商品")
                 } else {
-                    _self.productList[index].quantity--;
+                    _self.cartData.productList[index].quantity--;
 
                 }
                 console.log("sub", _self.productList[index].quantity)
@@ -163,8 +108,8 @@
             add(index){
                 console.log(index)
                 let _self = this;
-                _self.productList[index].quantity++;
-                console.log("add", _self.productList[index].quantity)
+                _self.cartData.productList[index].quantity++;
+                console.log("add", _self.cartData.productList[index].quantity)
             },
             computeTotalPrice(){
 
@@ -222,7 +167,7 @@
     .cartList {
         width: 7.5rem;
         padding-top: 1rem;
-        padding-bottom: 1.8rem;
+        padding-bottom: 2.12rem;
         overflow: hidden;
 
     }

@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div id="EditAddressPage">
         <div class="topBar">
             <span class="cancel-btn"> 取消 </span>
             <span class="top-title">编辑地址</span>
@@ -87,7 +87,6 @@
             text-align: center;
         }
     }
-
     .addressEditBox {
         width: 100%;
         padding: .2rem;

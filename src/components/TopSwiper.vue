@@ -134,7 +134,7 @@
                 display: block;
             }
             img {
-                width: 100%;
+                width: 7.5rem;
                 height: 3.6rem;
             }
         }

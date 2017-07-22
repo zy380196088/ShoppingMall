@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="clearfix">
         <a :href="item.link" v-for="item in data">
             <figure class="figure-lg " >
                 <div class="product-Img-lg">

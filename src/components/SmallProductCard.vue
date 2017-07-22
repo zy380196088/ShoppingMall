@@ -1,21 +1,24 @@
 <template>
-    <div>
-        <a :href="item.link" v-for="item in dataList">
-            <figure class="figure-sm">
-                <div class="product-Img">
-                    <div class="seckillTap"></div>
-                    <img :src="item.imgSrc" alt="">
-                </div>
-                <figcaption class="product-Title">{{item.productTitle}}</figcaption>
-                <div class="price-Box">
-                    <p class="price-Text">
-                        <s class="originalPrice-Text">{{item.originalPrice}}</s>
-                        <span class="vipPrice-Text">会员价</span>
-                    </p>
-                    <p class="price-Value">&#165{{item.VIPPrice}}</p>
-                </div>
-            </figure>
-        </a>
+    <div class="clearfix">
+        <div v-for="item in topSeckill">
+            <router-link :key="item.id"
+                         :to="{name:'ProductDetails',params:{productId:item.id}}">
+                <figure class="figure-sm">
+                    <div class="product-Img">
+                        <div class="seckillTap"></div>
+                        <img :src="item.imgSrc" alt="">
+                    </div>
+                    <figcaption class="product-Title">{{item.productTitle}}</figcaption>
+                    <div class="price-Box">
+                        <p class="price-Text">
+                            <s class="originalPrice-Text">{{item.originalPrice}}</s>
+                            <span class="vipPrice-Text">会员价</span>
+                        </p>
+                        <p class="price-Value">&#165{{item.VIPPrice}}</p>
+                    </div>
+                </figure>
+            </router-link>
+        </div>
     </div>
 
 </template>
@@ -23,41 +26,42 @@
 <script type="text/ecmascript-6">
     export default{
         name: '',
+        props: ['topSeckill'],
         components: {},
-        extends: {},
         data () {
             return {
-                dataList: [
-                    {
-                        link: 'https://detail.tmall.com/item.htm?spm=a230r.1.14.11.e5uP2J&id=528640170133&cm_id=140105335569ed55e27b&abbucket=14&sku_properties=5919063:6536025',
-                        imgSrc: "https://g-search2.alicdn.com/img/bao/uploaded/i4/TB1MutnMXXXXXaWaXXXXXXXXXXX.jpg_360x360Q90.jpg_.webp",
-                        productTitle: "高级订制羊皮粗跟高跟撞色鞋",
-                        originalPrice: "455",
-                        VIPPrice: "200"
-                    },
-                    {
-                        link: 'https://daigou.taobao.com/item.htm?spm=5418.7905509.2.37.VgyEn4&id=2942676',
-                        imgSrc: "https://gw.alicdn.com/tfscom/TB1WmfURXXXXXbpaFXXXXXXXXXX_120x120q90",
-                        productTitle: "Christian Louboutin萝卜丁红底鞋限量三支唇膏口红礼盒",
-                        originalPrice: "5980",
-                        VIPPrice: "1877.4"
-                    }, {
-                        link: 'https://item.taobao.com/item.htm?spm=5704.113171.565426.12.ibzBq2&&id=550728305335',
-                        imgSrc: "https://gd2.alicdn.com/imgextra/i4/838749286/TB2hZPbsipnpuFjSZFkXXc4ZpXa_!!838749286.jpg_400x400.jpg",
-                        productTitle: "欧式实拍刺绣贡缎美式床上用品全棉四件套1.8m纯棉被套",
-                        originalPrice: "1230",
-                        VIPPrice: "1180"
-                    }
-                ]
+//                dataList: [
+//                    {
+//                        link: 'https://detail.tmall.com/item.htm?spm=a230r.1.14.11.e5uP2J&id=528640170133&cm_id=140105335569ed55e27b&abbucket=14&sku_properties=5919063:6536025',
+//                        imgSrc: "https://g-search2.alicdn.com/img/bao/uploaded/i4/TB1MutnMXXXXXaWaXXXXXXXXXXX.jpg_360x360Q90.jpg_.webp",
+//                        productTitle: "高级订制羊皮粗跟高跟撞色鞋",
+//                        originalPrice: "455",
+//                        VIPPrice: "200"
+//                    },
+//                    {
+//                        link: 'https://daigou.taobao.com/item.htm?spm=5418.7905509.2.37.VgyEn4&id=2942676',
+//                        imgSrc: "https://gw.alicdn.com/tfscom/TB1WmfURXXXXXbpaFXXXXXXXXXX_120x120q90",
+//                        productTitle: "Christian Louboutin萝卜丁红底鞋限量三支唇膏口红礼盒",
+//                        originalPrice: "5980",
+//                        VIPPrice: "1877.4"
+//                    }, {
+//                        link: 'https://item.taobao.com/item.htm?spm=5704.113171.565426.12.ibzBq2&&id=550728305335',
+//                        imgSrc: "https://gd2.alicdn.com/imgextra/i4/838749286/TB2hZPbsipnpuFjSZFkXXc4ZpXa_!!838749286.jpg_400x400.jpg",
+//                        productTitle: "欧式实拍刺绣贡缎美式床上用品全棉四件套1.8m纯棉被套",
+//                        originalPrice: "1230",
+//                        VIPPrice: "1180"
+//                    }
+//                ]
             }
         },
-        //组件属性
-        //在 JavaScript 中对象和数组是引用类型，指向同一个内存空间，如果 prop 是一个对象或数组，在子组件内部改变它会影响父组件的状态。
-        props: {},
         methods: {},
         mounted () {
         },
-        computed: {},
+        computed: {
+            sort(){
+                return this.dataList.sort((a, b)=>a.VIPPrice - b.VIPPrice)
+            }
+        },
         watch: {}
     }
 
