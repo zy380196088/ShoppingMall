@@ -101,6 +101,7 @@
         }
         .orderTabs {
             width: 6rem;
+            background-color: #fff;
         }
     }
     .orderList {

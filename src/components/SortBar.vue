@@ -57,6 +57,7 @@
     .sortBar {
         width: 7.5rem;
         height: .6rem;
+        font-size: .32rem;
         .sortType-btn {
             float: left;
             width: 3.75rem;
@@ -92,6 +93,10 @@
             color: $fontColor;
         }
 
+    }
+
+    .sortBar:hover {
+        color: #ff5400;
     }
 
 </style>
