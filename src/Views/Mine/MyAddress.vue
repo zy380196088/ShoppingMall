@@ -116,6 +116,10 @@
         .EditToolBox {
             width: 100%;
             color: $borderColor;
+            .tool-button{
+                height: 100%;
+                float: left;
+            }
         }
     }
 
