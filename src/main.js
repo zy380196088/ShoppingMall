@@ -22,7 +22,9 @@ Vue.config.productionTip = false;
 Vue.use(MuseUI);
 Vue.prototype.$http = axios;
 
-axios.defaults.baseURL = 'http://localhost:8080/wap';
+// axios.defaults.baseURL = 'http://localhost:8080/wap';
+axios.defaults.baseURL = 'http://localhost:9888';
+
 axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
 Vue.filter("money", function (vaule) {

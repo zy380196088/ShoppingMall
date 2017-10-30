@@ -54,22 +54,33 @@
         <!--</mu-table>-->
     </div>
 </template>
-<script>
+<script type="text/ecmascript-6">
     import TopCheckbox from '../components/TopCheckbox.vue'
-
+    import axios from 'axios'
     export default {
         name: 'CartList',
         props: ['cartData'],
         components: {
             TopCheckbox
         },
+        mounted: function () {
+            this.getGoodsList();
+        },
         create(){
             this.getData()
         },
         data(){
-            return {}
+            return {
+                goodsList: []
+            }
         },
         methods: {
+            getGoodsList(){
+                axios.get("/goods").then((res) => {
+                    console.log(res);
+                this.goodsList = res.result;
+            })
+            },
             getData(){
                 $.get('http://rapapi.org/mockjsdata/20862/cart?userID=123', {}, function (res) {
                     console.log("res", res)

@@ -5,6 +5,7 @@
 <script type="text/ecmascript-6">
     import CartList from '../components/CartList.vue'
 
+
     export default{
         name: 'ShoppingCart',
         components: {
